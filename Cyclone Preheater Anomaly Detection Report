@@ -1,0 +1,69 @@
+📊 Cyclone Preheater Anomaly Detection Report
+👨‍💻 Prepared by: Rahul Rai
+📅 Date: August 1, 2025
+📁 Dataset: internship-data-1.csv
+📌 Records: 5,200 rows, 7 columns
+1. 📂 Data Preparation
+We began by loading the raw sensor data from the preheater cyclone unit. Key preprocessing steps included:
+
+Datetime Parsing: Converted the time column to pandas datetime for accurate time-based indexing and visualization.
+
+Missing Values: Handled using forward-fill (ffill) to maintain temporal continuity.
+
+Feature Engineering:
+
+Added hour, day, and weekday for time series analysis.
+
+Calculated rolling statistics (mean, std) for contextual analysis.
+
+Normalization: Standardized values using StandardScaler for model consistency.
+
+Label Creation: Anomaly labels created based on z-score thresholding (z > 3) and model consensus.
+
+2. 🧠 Analysis Strategy
+We employed a multi-model anomaly detection approach:
+
+Model	Description
+Z-Score	Statistical outlier detection based on z-score > 3
+Isolation Forest	Tree-based model that isolates anomalies early
+One-Class SVM	Learns the boundary of normal class
+AutoEncoder (optional)	Neural network reconstruction error scoring
+
+Voting Strategy: Final anomaly label = Timestamp flagged by ≥2 models.
+
+3. 📍 Insights and Results
+✅ 437 timestamps were consistently flagged as anomalous by at least two models.
+📈 The majority of anomalies occurred during the following periods:
+
+Early mornings (2–4 AM) and post-maintenance hours (12–2 PM)
+
+Top features affected:
+
+Cyclone_Inlet_Gas_Temp
+
+Cyclone_Material_Temp
+
+Cyclone_Gas_Outlet_Temp
+
+🛠 Anomaly Ranges
+Feature	Min	Max	Anomaly Thresholds
+Cyclone_Inlet_Gas_Temp	480	730	z-score > 3
+Cyclone_Material_Temp	540	800	z-score > 3
+Cyclone_Outlet_Gas_draft	-150	50	Isolation Forest
+Cyclone_cone_draft	-120	40	One-Class SVM
+Cyclone_Gas_Outlet_Temp	450	780	Autoencoder
+Cyclone_Inlet_Draft	-130	60	Isolation Forest
+
+4. 📊 Visualizations and Exports
+📍 Anomaly Summary Timeline – daily/hourly spike chart
+
+📈 Feature-wise Anomaly Charts – PNGs per feature (6 plots)
+
+📄 anomalies_cleaned.csv – full list of 437 abnormal timestamps
+
+📄 feature_summary_cleaned.csv – stats (mean, std, min, max, skew, kurtosis)
+
+📊 Heatmap – Correlation between sensor readings
+
+📘 Excel File with anomalies highlighted in red and summary sheet
+
