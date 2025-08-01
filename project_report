@@ -34,6 +34,20 @@ Local Outlier Factor (LOF):
 
 Identified samples with significantly lower density than neighbors, especially useful for contextual anomalies.
 
+types of anomalies detected are most likely point anomalies (also called spikes or outliers) in time-series sensor data from the cyclone preheater system
+Z-Score / Standard Deviation Method (anomaly score > 3 or < -3)
+437 anomalies detected across 5200 records (≈8.4%)
+
+Most were point anomalies (sharp deviations)
+
+Some collective/contextual anomalies were identified when several features showed abnormal behavior around the same timestamps (visible in heatmaps/timelines)
+
+
+
+
+
+
+
 📊 Visualization:
 Time series plots with red dots for anomalies
 
