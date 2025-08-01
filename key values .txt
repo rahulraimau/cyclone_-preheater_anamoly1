@@ -66,3 +66,49 @@ Distance-Based: An anomaly is defined as a data point that is a large distance a
 Density-Based: This criterion marks data points in regions of low density as anomalies. The DBSCAN algorithm uses this principle by identifying sparse points that don't belong to any dense clusters.
 
 Model-Based: Some models, like Isolation Forest, define anomalies as points that are easy to "isolate" from the rest of the data. An autoencoder, on the other hand, flags a point as an anomaly if it has a high "reconstruction error," meaning the model cannot accurately compress and decompress it.
+
+Approach
+
+Exploratory Data Analysis (EDA):
+
+Load and clean the dataset.
+Analyze distributions, correlations, and time-series trends of the six variables.
+Visualize data using histograms, box plots, correlation matrices, and time-series plots.
+
+
+Feature Engineering:
+
+Create derived features like temperature differences and rolling statistics.
+Standardize features for model compatibility.
+
+
+Feature Selection:
+
+Use correlation analysis and feature importance from a tree-based model to select relevant features.
+
+
+Modeling:
+
+Implement 4 anomaly detection models: Isolation Forest, One-Class SVM, Local Outlier Factor (LOF), and DBSCAN.
+Include an Autoencoder (neural network) for deep learning-based anomaly detection.
+
+
+Hyperparameter Tuning:
+
+Use grid search for Isolation Forest and One-Class SVM.
+Tune DBSCAN parameters (eps, min_samples) and LOF (n_neighbors).
+Optimize Autoencoder architecture (layers, neurons).
+
+
+Evaluation:
+
+Since this is unsupervised anomaly detection, evaluate models using silhouette scores for clustering-based models (DBSCAN, LOF) and anomaly score distributions.
+Compare anomaly detection periods across models.
+
+
+Output:
+
+Save anomaly periods for each model in CSV files.
+Generate visualizations of anomalies.
+Create a presentation summarizing the process.
+
