@@ -1,0 +1,57 @@
+Data and File Paths:
+
+Input File: /content/data (5) (1) (1) (1) (1)(internship-data-1).csv
+
+Output Directory: output
+
+Core Data Columns:
+
+'Cyclone_Inlet_Gas_Temp'
+
+'Cyclone_Material_Temp'
+
+'Cyclone_Outlet_Gas_draft'
+
+'Cyclone_cone_draft'
+
+'Cyclone_Gas_Outlet_Temp'
+
+'Cyclone_Inlet_Draft'
+
+Feature Engineering:
+
+Rolling Window Size: 12 periods (for rolling mean and standard deviation).
+
+Anomaly Detection Model Parameters:
+
+IsolationForest:
+
+n_estimators: 100
+
+contamination: 0.01
+
+random_state: 42
+
+OneClassSVM:
+
+nu: 0.01
+
+gamma: 'scale'
+
+Local Outlier Factor (LOF):
+
+n_neighbors: 20
+
+contamination: 0.01
+
+novelty: True
+
+DBSCAN:
+
+eps: 0.5
+
+min_samples: 5
+
+Anomaly Period Aggregation:
+
+Time Threshold: 30min
