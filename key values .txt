@@ -55,3 +55,14 @@ min_samples: 5
 Anomaly Period Aggregation:
 
 Time Threshold: 30min
+
+
+There are several criteria used to define and detect anomalies, which often depend on the model or algorithm being used. The main criteria are:
+
+Statistical Deviation: This approach identifies anomalies as data points that deviate significantly from the rest of the data based on statistical measures. For example, a point might be flagged as anomalous if it falls outside a certain number of standard deviations from the mean.
+
+Distance-Based: An anomaly is defined as a data point that is a large distance away from its nearest neighbors. The Local Outlier Factor (LOF) model, for instance, uses this criterion by comparing the density of a point to the density of its neighbors.
+
+Density-Based: This criterion marks data points in regions of low density as anomalies. The DBSCAN algorithm uses this principle by identifying sparse points that don't belong to any dense clusters.
+
+Model-Based: Some models, like Isolation Forest, define anomalies as points that are easy to "isolate" from the rest of the data. An autoencoder, on the other hand, flags a point as an anomaly if it has a high "reconstruction error," meaning the model cannot accurately compress and decompress it.
