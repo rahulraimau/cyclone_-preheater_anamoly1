@@ -1,0 +1,78 @@
+✅ 1. Data Preparation
+We began by loading the raw dataset of ~400,000 sensor readings. The data included six continuous features such as Cyclone_Inlet_Gas_Temp, Cyclone_Material_Temp, and various draft and pressure measurements.
+
+Key Processing Steps:
+Datetime Conversion: Converted time column into datetime format and set it as the index for temporal analysis.
+
+Missing Values: Checked and confirmed there were no missing values.
+
+Feature Engineering:
+
+Calculated z-scores for each numerical feature to detect standard deviations from the mean.
+
+Created a rolling mean to observe local trends.
+
+Derived hour and date features to allow for hourly and daily anomaly summaries.
+
+Normalization: Used StandardScaler to normalize values before feeding them into anomaly detection algorithms.
+
+✅ 2. Analysis Strategy
+To identify anomalies (abnormal periods in the data), we used both statistical and machine learning-based approaches:
+
+🧪 Methods Used:
+Z-Score Thresholding:
+
+Points with absolute z-score > 3 were flagged as anomalies (outliers).
+
+Isolation Forest:
+
+A tree-based ensemble algorithm designed to separate anomalies in high-dimensional data.
+
+Used contamination rate of 1% to flag rare patterns.
+
+Local Outlier Factor (LOF):
+
+Identified samples with significantly lower density than neighbors, especially useful for contextual anomalies.
+
+📊 Visualization:
+Time series plots with red dots for anomalies
+
+Correlation heatmaps to identify inter-feature relationships
+
+Hourly/Daily anomaly frequency timeline
+
+All anomalies were compiled into an anomalies.csv with timestamp and feature values.
+
+✅ 3. Insights
+📈 Anomaly Summary:
+Most anomalies occurred in Cyclone_Inlet_Gas_Temp and Cyclone_Gas_Outlet_Temp.
+
+Abnormal values often spiked beyond ±3 std deviations from the mean.
+
+Notable anomaly periods:
+
+23rd to 25th June, 5 AM to 8 AM daily
+
+High variance observed during midnight to early morning shifts.
+
+Correlated drafts (Cyclone_cone_draft, Cyclone_Inlet_Draft) had simultaneous anomaly patterns.
+
+📅 Visual Timeline:
+Anomaly density was higher during operational transitions (e.g., shift changes).
+
+Heatmap shows strong positive correlation (r ≈ 0.9) between inlet and outlet gas temperatures.
+
+Alerts could be programmed for any temp value outside the range [137°C – 158°C].
+
+📁 Files Provided in Zip:
+Rahul_Raimau_Anomaly_Detection.ipynb: Source code
+
+anomalies.csv: Timestamps + anomaly feature values
+
+summary_report.xlsx: Profile reports, stats
+
+correlation_heatmap.png, timeseries_anomaly_plot.png
+
+Rahul_Raimau_Presentation.pptx: 5-slide presentation
+
+README.md: GitHub instructions
